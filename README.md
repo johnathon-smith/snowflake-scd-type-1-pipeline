@@ -174,9 +174,9 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 │   ├── create_target_table.sql  
 │   ├── create_stored_procedure.sql  
 │   ├── create_task.sql  
-|   └── validation.sql
-├── python/  
-│   └── upload_csv_to_s3.py 
+|   └── validation.sql  
+├── python/   
+│   └── upload_csv_to_s3.py  
 ├── data_samples/  
     ├── customer_full_data.csv  
     └── customer_change_data.csv  
