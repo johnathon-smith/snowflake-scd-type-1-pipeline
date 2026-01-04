@@ -26,8 +26,7 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 
 ### Architecture Diagram
 
-**Add image here:**  
-`architecture/scd1_architecture_diagram.png`
+![Pipeline Architecture Diagram](architecture/scd1-architecture-diagram.png)
 
 ---
 
@@ -53,8 +52,7 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 - Files land in a dedicated `data/` folder
 - Each file represents a new snapshot of dimensional data
 
-**Add screenshot here:**  
-`screenshots/s3_bucket_data.png`
+![S3 Bucket Contents](screenshots/s3-contents.png)
 
 ---
 
@@ -64,9 +62,8 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 - An external stage references the S3 `data/` folder
 - This stage serves as the source for Snowpipe ingestion
 
-**Add screenshot here:**  
-`screenshots/storage_integration.png`  
-`screenshots/snowflake_stage.png`
+![Snowflake Storage Integration](screenshots/snowflake-integration-details.png)
+![Snowflake Stage](screenshots/snowflake-stage.png)
 
 ---
 
@@ -76,8 +73,8 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 - New files added to S3 are automatically loaded into the raw/source table
 - No manual execution or scheduling is required
 
-**Add screenshot here:**  
-`screenshots/snowpipe_definition.png`
+![Snowflake Pipe Creation](screenshots/snowflake-pipe-creation.png)
+![Snowflake Pipe Details](screenshots/snowflake-pipe-details.png)
 
 ---
 
@@ -87,8 +84,7 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 - The stream tracks newly inserted rows
 - Append-only behavior ensures efficient change detection
 
-**Add screenshot here:**  
-`screenshots/stream_on_raw_table.png`
+![Snowflake Stream Creation](screenshots/snowflake-stream-creation.png)
 
 ---
 
@@ -99,8 +95,7 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 - This prevents unnecessary compute usage and idle executions
 - The task triggers a stored procedure
 
-**Add screenshot here:**  
-`screenshots/task_definition.png`
+![Snowflake Task Creation](screenshots/snowflake-task-creation.png)
 
 ---
 
@@ -112,6 +107,8 @@ This repository is designed to be **recruiter-friendly** and focuses on:
   - Overwrite existing records when matching keys are found
 - No historical versions are retained (true SCD Type 1 behavior)
 
+![Snowflake Procedure Creation](screenshots/snowflake-procedure-creation.png)
+
 ---
 
 ## Testing and Validation
@@ -122,8 +119,10 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 - Data flows through Snowpipe, Stream, Task, and Stored Procedure
 - Target table is populated successfully
 
-**Add screenshot here:**  
-`screenshots/target_table_before_update.png`
+![Table Count Before Update](screenshots/count-before-update.png)
+![Elizabeth Yu Record Before Update](screenshots/elizabeth-yu-before-update.png)
+![Kyung Benitez Record Before Update](screenshots/kyung-benitez-before-update.png)
+![John Wick Record Before Update](screenshots/john-wick-before-update.png)
 
 ---
 
@@ -133,8 +132,10 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 - Existing records are overwritten in the target table
 - No historical data is preserved
 
-**Add screenshot here:**  
-`screenshots/target_table_after_update.png`
+![Table Count After Update](screenshots/count-after-update.png)
+![Elizabeth Yu Record After Update](screenshots/elizabeth-yu-after-update.png)
+![Kyung Benitez Record After Update](screenshots/kyung-benitez-after-update.png)
+![John Wick Record After Update](screenshots/john-wick-after-update.png)
 
 ---
 
@@ -142,14 +143,28 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 
 ├── README.md  
 ├── architecture/  
-│   └── scd1_architecture_diagram.png  
+│   └── scd1-architecture-diagram.png  
 ├── screenshots/   
-│   ├── s3_bucket_data.png  
-│   ├── snowpipe_definition.png  
-│   ├── stream_on_raw_table.png  
-│   ├── task_definition.png  
-│   ├── target_table_before_update.png  
-│   └── target_table_after_update.png  
+|   ├── count-after-update.png  
+|   ├── count-before-update.png  
+|   ├── elizabeth-yu-after-update.png  
+|   ├── elizabeth-yu-before-update.png  
+|   ├── john-wick-after-update.png  
+|   ├── john-wick-before-update.png  
+|   ├── kyung-benitez-after-update.png  
+|   ├── kyung-benitez-before-update.png  
+|   ├── python-aws-user.png  
+│   ├── s3-contents.png  
+|   ├── s3-event-notification.png  
+│   ├── snowflake-integration-details.png  
+|   ├── snowflake-integration-role.png  
+|   ├── snowflake-pipe-creation.png  
+|   ├── snowflake-pipe-details.png  
+|   ├── snowflake-procedure-creation.png  
+|   ├── snowflake-stage.png  
+|   ├── snowflake-stream-creation.png  
+|   ├── snowflake-task-creation.png
+│   └── snowflake-trust-relationship.png  
 ├── sql/  
 │   ├── create_storage_integration.sql  
 │   ├── create_stage.sql  
@@ -157,15 +172,14 @@ This repository is designed to be **recruiter-friendly** and focuses on:
 │   ├── create_snowpipe.sql  
 │   ├── create_stream.sql  
 │   ├── create_target_table.sql  
-│   ├── create_scd1_stored_procedure.sql  
-│   └── create_task.sql  
+│   ├── create_stored_procedure.sql  
+│   ├── create_task.sql  
+|   └── validation.sql
 ├── python/  
-│   └── upload_csv_to_s3.ipynb  
+│   └── upload_csv_to_s3.py 
 ├── data_samples/  
-│   ├── initial_load.csv  
-│   └── updated_records.csv  
-└── docs/  
-    └── design_decisions.md  
+    ├── customer_full_data.csv  
+    └── customer_change_data.csv  
 
 ---
 
